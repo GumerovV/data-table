@@ -14,14 +14,7 @@ import {
 import type { DataTableProps } from './DataTable.types'
 import styles from './DataTable.module.scss'
 
-const settingsTabs = [
-  { id: 'columns', label: 'Столбцы', icon: <AppstoreOutlined /> },
-  { id: 'filters', label: 'Фильтры', icon: <FilterOutlined /> },
-  { id: 'settings', label: 'Настройки', icon: <SettingOutlined /> },
-  { id: 'help', label: 'Помощь', icon: <QuestionCircleOutlined /> },
-] as const
-
-type SettingsTab = (typeof settingsTabs)[number]['id']
+type SettingsTab = 'columns' | 'filters' | 'settings' | 'help'
 
 export function DataTable<T extends object>({
   columns,
@@ -33,6 +26,46 @@ export function DataTable<T extends object>({
   const visibleColumns = columnVisibility
     ? applyColumnVisibility(columns, visibility.hiddenColumns)
     : columns
+
+  const emptyContent = (
+    <Empty
+      description="Этот раздел пока пуст"
+      image={Empty.PRESENTED_IMAGE_SIMPLE}
+    />
+  )
+  const settingsTabs = [
+    {
+      id: 'columns',
+      label: 'Столбцы',
+      icon: <AppstoreOutlined />,
+      content: columnVisibility ? (
+        <ColumnVisibilityPanel columns={columns} visibility={visibility} />
+      ) : (
+        <Empty
+          description="Управление столбцами не включено"
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+      ),
+    },
+    {
+      id: 'filters',
+      label: 'Фильтры',
+      icon: <FilterOutlined />,
+      content: emptyContent,
+    },
+    {
+      id: 'settings',
+      label: 'Настройки',
+      icon: <SettingOutlined />,
+      content: emptyContent,
+    },
+    {
+      id: 'help',
+      label: 'Помощь',
+      icon: <QuestionCircleOutlined />,
+      content: emptyContent,
+    },
+  ] as const
 
   const currentTab = settingsTabs.find(({ id }) => id === activeTab)
 
@@ -75,14 +108,7 @@ export function DataTable<T extends object>({
           )
         }
       >
-        {activeTab === 'columns' && columnVisibility ? (
-          <ColumnVisibilityPanel columns={columns} visibility={visibility} />
-        ) : (
-          <Empty
-            description="Этот раздел пока пуст"
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-          />
-        )}
+        {currentTab?.content}
       </Drawer>
     </div>
   )

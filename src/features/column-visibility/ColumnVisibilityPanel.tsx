@@ -6,6 +6,7 @@ import {
   getColumnLabel,
   getHideableLeafColumns,
 } from './columnVisibility.utils'
+import styles from './ColumnVisibilityPanel.module.scss'
 
 interface ColumnVisibilityPanelProps<T extends object> {
   columns: DataTableColumns<T>
@@ -24,7 +25,7 @@ export function ColumnVisibilityPanel<T extends object>({
   const allVisible = visibility.hiddenColumns.length === 0
 
   return (
-    <div className="column-visibility-panel">
+    <div className={styles.panel}>
       <Input
         allowClear
         aria-label="Поиск столбцов"
@@ -33,7 +34,7 @@ export function ColumnVisibilityPanel<T extends object>({
         value={search}
       />
 
-      <div className="column-visibility-actions">
+      <div className={styles.actions}>
         <Button onClick={visibility.showAll} size="small" type="link">
           Показать все
         </Button>
@@ -47,8 +48,8 @@ export function ColumnVisibilityPanel<T extends object>({
 
       <Divider />
 
-      <div className="column-visibility-list">
-        <div className="column-visibility-row column-visibility-all">
+      <div className={styles.list}>
+        <div className={`${styles.row} ${styles.all}`}>
           <span>Все столбцы</span>
           <Switch
             checked={allVisible}
@@ -59,7 +60,7 @@ export function ColumnVisibilityPanel<T extends object>({
           />
         </div>
         {filteredColumns.map((column) => (
-          <div className="column-visibility-row" key={column.id}>
+          <div className={styles.row} key={column.id}>
             <span title={getColumnLabel(column)}>{getColumnLabel(column)}</span>
             <Switch
               checked={visibility.isVisible(column.id)}
@@ -69,7 +70,7 @@ export function ColumnVisibilityPanel<T extends object>({
           </div>
         ))}
         {filteredColumns.length === 0 && search && (
-          <span className="column-visibility-empty">Столбцы не найдены</span>
+          <span className={styles.empty}>Столбцы не найдены</span>
         )}
       </div>
     </div>

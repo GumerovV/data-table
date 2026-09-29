@@ -52,60 +52,6 @@
   }
 }
 
-:global(.column-visibility-panel) {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-:global(.column-visibility-panel .ant-divider) {
-  margin: 0;
-}
-
-:global(.column-visibility-actions) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px;
-  margin: -6px;
-
-  :global(.ant-btn) {
-    padding-inline: 6px;
-  }
-}
-
-:global(.column-visibility-list) {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-:global(.column-visibility-row) {
-  display: flex;
-  min-height: 36px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: #344054;
-  font-size: 13px;
-
-  > span:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-:global(.column-visibility-all) {
-  font-weight: 600;
-}
-
-:global(.column-visibility-empty) {
-  padding: 12px 0;
-  color: #98a2b3;
-  font-size: 13px;
-  text-align: center;
-}
-
 @media (max-width: 600px) {
   .settingsRail {
     flex-basis: 40px;

@@ -1,0 +1,53 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  :global(.ant-divider) {
+    margin: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: -6px;
+
+  :global(.ant-btn) {
+    padding-inline: 6px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.row {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #344054;
+  font-size: 13px;
+
+  > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.all {
+  font-weight: 600;
+}
+
+.empty {
+  padding: 12px 0;
+  color: #98a2b3;
+  font-size: 13px;
+  text-align: center;
+}
