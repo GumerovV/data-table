@@ -77,7 +77,7 @@ export function App() {
         dataSource={teamMembers}
         rowKey="id"
         columnVisibility={{ defaultHidden: ['email'] }}
-        pagination={{ pageSize: 5, hideOnSinglePage: true }}
+        pagination={{ pageSize: 1, hideOnSinglePage: true }}
         bordered
       />
     </main>

@@ -1,4 +1,4 @@
-export { ColumnVisibilityMenu } from './ColumnVisibilityMenu'
+export { ColumnVisibilityPanel } from './ColumnVisibilityPanel'
 export { applyColumnVisibility } from './applyColumnVisibility'
 export type { ColumnVisibilityConfig } from './columnVisibility.types'
 export { useColumnVisibility } from './useColumnVisibility'
